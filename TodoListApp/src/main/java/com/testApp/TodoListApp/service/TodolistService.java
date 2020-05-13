@@ -8,40 +8,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+/**
+ * Implementations of {@link TodolistService} interface.
+ */
 
 @Slf4j
 @Service
 public class TodolistService implements TodoInterfase{
     @Autowired
-    private TodolistRepository TodolistRepository;
+    TodolistRepository todolistRepository;
 
 
     @Override
     public Todolist getById(Long id) {
-        return TodolistRepository.findOne(id);
+        return todolistRepository.findOne(id);
     }
 
     @Override
     public void save(Todolist todolist) {
-        TodolistRepository.save(todolist);
+        todolistRepository.save(todolist);
 
     }
 
     @Override
     public void edit(Todolist todolist) {
-        TodolistRepository.save(todolist);
+        todolistRepository.save(todolist);
 
 
     }
 
     @Override
     public void delete(Long id) {
-        TodolistRepository.delete(id);
+       todolistRepository.delete(id);
 
     }
 
     @Override
     public List<Todolist> getAll() {
-        return TodolistRepository.findAll();
+        return todolistRepository.findAll();
     }
 }
