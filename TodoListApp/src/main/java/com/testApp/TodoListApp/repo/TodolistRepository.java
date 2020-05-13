@@ -4,14 +4,14 @@ import com.testApp.TodoListApp.model.Todolist;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Repository interface for {@link Customer} class.
+ * Repository interface for {@link Todolist} class.
  *
- * @author Eugene Suleimanov
+ * @author nikshch
  * @version 1.0
  */
 
-public interface TodolistRepository extends JpaRepository<Todolist, Long> {
+public interface TodolistRepository extends JpaRepository<Todolist, Long>{
 
-    void delete(Long id);
+
 
 }

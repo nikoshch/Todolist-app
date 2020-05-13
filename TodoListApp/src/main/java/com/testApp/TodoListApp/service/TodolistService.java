@@ -1,6 +1,5 @@
 package com.testApp.TodoListApp.service;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.testApp.TodoListApp.model.Todolist;
 import com.testApp.TodoListApp.repo.TodolistRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -8,8 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 /**
- * Implementations of {@link TodolistService} interface.
+ * Repository interface for {@link TodoInterfase} interface.
+ *
+ * @author nikshch
+ * @version 1.0
+ *
  */
 
 @Slf4j
@@ -21,17 +25,20 @@ public class TodolistService implements TodoInterfase{
 
     @Override
     public Todolist getById(Long id) {
-        return todolistRepository.findOne(id);
+        log.info("IN TodolistService getById {}", id);
+        return todolistRepository.getOne(id);
     }
 
     @Override
     public void save(Todolist todolist) {
+        log.info("IN TodolistService save {}", todolist);
         todolistRepository.save(todolist);
 
     }
 
     @Override
     public void edit(Todolist todolist) {
+        log.info("IN TodolistService edit {}", todolist);
         todolistRepository.save(todolist);
 
 
@@ -39,12 +46,14 @@ public class TodolistService implements TodoInterfase{
 
     @Override
     public void delete(Long id) {
-       todolistRepository.delete(id);
+        log.info("IN TodolistService delete {}", id);
+       todolistRepository.deleteById(id);
 
     }
 
     @Override
     public List<Todolist> getAll() {
+        log.info("IN TodolistService getAll");
         return todolistRepository.findAll();
     }
 }

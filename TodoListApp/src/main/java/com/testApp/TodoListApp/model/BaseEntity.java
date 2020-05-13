@@ -11,6 +11,9 @@ import javax.persistence.MappedSuperclass;
 
 /**
  * Base class class with property ID.
+ *
+ * @author nikshch
+ * @version 1.0
  */
 
 @MappedSuperclass
