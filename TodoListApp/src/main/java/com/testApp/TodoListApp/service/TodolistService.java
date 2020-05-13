@@ -18,21 +18,30 @@ public class TodolistService implements TodoInterfase{
 
     @Override
     public Todolist getById(Long id) {
-        return null;
+        return TodolistRepository.findOne(id);
     }
 
     @Override
     public void save(Todolist todolist) {
+        TodolistRepository.save(todolist);
+
+    }
+
+    @Override
+    public void edit(Todolist todolist) {
+        TodolistRepository.save(todolist);
+
 
     }
 
     @Override
     public void delete(Long id) {
+        TodolistRepository.delete(id);
 
     }
 
     @Override
     public List<Todolist> getAll() {
-        return null;
+        return TodolistRepository.findAll();
     }
 }

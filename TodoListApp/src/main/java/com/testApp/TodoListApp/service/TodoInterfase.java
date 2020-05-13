@@ -9,6 +9,8 @@ public interface TodoInterfase {
 
     void save(Todolist todolist);
 
+    void edit(Todolist todolist);
+
     void delete(Long id);
 
     List<Todolist> getAll();
