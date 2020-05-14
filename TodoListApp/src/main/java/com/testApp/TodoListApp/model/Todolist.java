@@ -7,12 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-/**
- * Simple JavaBean domain object that represents Todolist.
- *
- * @author nikshch
- * @version 1.0
- */
+
 
 @Entity
 @Table(name = "todolist")

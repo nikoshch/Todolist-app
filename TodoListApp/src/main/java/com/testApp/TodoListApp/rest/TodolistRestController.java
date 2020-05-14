@@ -41,7 +41,7 @@ public class TodolistRestController {
         return new ResponseEntity<>(todolist,headers,HttpStatus.CREATED);
 
     }
-    @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Todolist> editTodolist(@RequestBody @Valid Todolist todolist){
         HttpHeaders headers = new HttpHeaders();
         if (todolist == null){

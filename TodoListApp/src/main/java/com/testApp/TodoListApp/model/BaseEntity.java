@@ -9,12 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-/**
- * Base class class with property ID.
- *
- * @author nikshch
- * @version 1.0
- */
+
 
 @MappedSuperclass
 @Getter
