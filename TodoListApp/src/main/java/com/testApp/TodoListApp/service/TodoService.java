@@ -6,12 +6,12 @@ import java.util.List;
 
 
 
-public interface TodoInterfase {
+public interface TodoService {
     Todolist getById(Long id);
 
-    void save(Todolist todolist);
+    Todolist save(Todolist todolist);
 
-    void edit(Todolist todolist);
+    Todolist edit(Todolist todolist);
 
     void delete(Long id);
 

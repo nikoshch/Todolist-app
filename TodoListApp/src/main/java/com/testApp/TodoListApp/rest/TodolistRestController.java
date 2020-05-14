@@ -1,7 +1,7 @@
 package com.testApp.TodoListApp.rest;
 
 import com.testApp.TodoListApp.model.Todolist;
-import com.testApp.TodoListApp.service.TodolistService;
+import com.testApp.TodoListApp.service.TodolistServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,45 +13,44 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/todolist/")
+@RequestMapping("/api/v1/todolist")
 public class TodolistRestController {
     @Autowired
-    private TodolistService todolistService;
+    private TodolistServiceImpl todolistService;
 
-    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Todolist> getTodolist(@PathVariable("id")Long todolistId){
-        if (todolistId == null){
-            return new ResponseEntity<Todolist>(HttpStatus.BAD_REQUEST);
-        }
         Todolist todolist = this.todolistService.getById(todolistId);
-        if (todolistId == null){
+
+        if (todolist == null){
             return new ResponseEntity<Todolist>(HttpStatus.NOT_FOUND);
         }
 
 
      return new ResponseEntity<Todolist>(todolist, HttpStatus.OK);
     }
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Todolist> saveTodolist(@RequestBody @Valid Todolist todolist){
-        HttpHeaders headers = new HttpHeaders();
-        if (todolist == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        this.todolistService.save(todolist);
-        return new ResponseEntity<>(todolist,headers,HttpStatus.CREATED);
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Todolist> saveTodoList(@RequestBody @Valid Todolist todolist) {
+        Todolist saved = this.todolistService.save(todolist);
+
+        return new ResponseEntity<>(saved,HttpStatus.CREATED);
 
     }
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Todolist> editTodolist(@RequestBody @Valid Todolist todolist){
-        HttpHeaders headers = new HttpHeaders();
-        if (todolist == null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Todolist> editTodolist(@PathVariable("id")Long todolistId, @RequestBody @Valid Todolist todolist){
+        if (!todolistId.equals(todolist.getId())) {
+            return ResponseEntity.badRequest().build();
         }
-        this.todolistService.edit(todolist);
-        return new ResponseEntity<>(todolist,headers,HttpStatus.CREATED);
+
+        if (todolistService.getById(todolistId) == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        Todolist edited = this.todolistService.edit(todolist);
+
+        return new ResponseEntity<>(edited,HttpStatus.OK);
 
     }
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Todolist>deletTodolist(@PathVariable("id")Long id){
         Todolist todolist = this.todolistService.getById(id);
         if (todolist == null){
@@ -59,16 +58,12 @@ public class TodolistRestController {
 
         }
         this.todolistService.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
-    @RequestMapping(value = "",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Todolist>> getAllTodolist(){
-        List<Todolist> todolists = this.todolistService.getAll();
-        if (todolists.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(todolists,HttpStatus.OK);
+        return new ResponseEntity<>(this.todolistService.getAll(),HttpStatus.OK);
     }
 
 }
