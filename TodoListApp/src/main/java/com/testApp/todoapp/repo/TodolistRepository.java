@@ -1,6 +1,6 @@
-package com.testApp.TodoListApp.repo;
+package com.testApp.todoapp.repo;
 
-import com.testApp.TodoListApp.model.Todolist;
+import com.testApp.todoapp.model.Todolist;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

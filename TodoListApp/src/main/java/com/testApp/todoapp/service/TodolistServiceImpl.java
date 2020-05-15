@@ -1,7 +1,7 @@
-package com.testApp.TodoListApp.service;
+package com.testApp.todoapp.service;
 
-import com.testApp.TodoListApp.model.Todolist;
-import com.testApp.TodoListApp.repo.TodolistRepository;
+import com.testApp.todoapp.model.Todolist;
+import com.testApp.todoapp.repo.TodolistRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-
-/**
- * Repository interface for {@link TodoService} interface.
- *
- * @author nikshch
- * @version 1.0
- *
- */
 
 @Slf4j
 @Service

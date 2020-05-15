@@ -1,6 +1,6 @@
-package com.testApp.TodoListApp.service;
+package com.testApp.todoapp.service;
 
-import com.testApp.TodoListApp.model.Todolist;
+import com.testApp.todoapp.model.Todolist;
 
 import java.util.List;
 

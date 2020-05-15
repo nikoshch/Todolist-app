@@ -1,9 +1,8 @@
-package com.testApp.TodoListApp.rest;
+package com.testApp.todoapp.rest;
 
-import com.testApp.TodoListApp.model.Todolist;
-import com.testApp.TodoListApp.service.TodolistServiceImpl;
+import com.testApp.todoapp.model.Todolist;
+import com.testApp.todoapp.service.TodolistServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

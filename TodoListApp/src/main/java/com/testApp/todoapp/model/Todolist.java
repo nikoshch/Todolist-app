@@ -1,14 +1,9 @@
-package com.testApp.TodoListApp.model;
+package com.testApp.todoapp.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
